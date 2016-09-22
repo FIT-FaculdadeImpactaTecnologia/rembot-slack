@@ -3,7 +3,7 @@
 import settings
 import requests
 
-def connect():
+def geturl():
     rtm = initrtm()
     return rtm['url']
 
