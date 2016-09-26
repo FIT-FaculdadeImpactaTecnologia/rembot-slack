@@ -1,5 +1,8 @@
 #!usr/bin/env python
 #-*- coding: utf-8 -*-
 
-BOT_NAME = 'rembot'
-API_TOKEN = 'xoxb-82884804448-R1yVGrkmHACfQPFtQRm8JpdL'
+import os
+
+SLACK_BOT_NAME = os.environ.get('SLACK_BOT_NAME') 
+SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
+SLACK_BOT_ID = os.environ.get('SLACK_BOT_ID')
