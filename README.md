@@ -4,3 +4,4 @@ Bot destinado ao grupo de comunicação da turma do 4° semestre de SI da Faculd
 ## Requirements
 * python2.7
 * websocket-client
+* python-firebase
