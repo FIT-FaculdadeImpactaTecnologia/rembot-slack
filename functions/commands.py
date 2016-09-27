@@ -12,7 +12,8 @@ def sala():
 
 
 def help(command = ''):
-    if not command == '':
-        return globals()[command].__doc__
-    else:
-        return help.__doc__
+    """
+    /sala
+    /traduzir
+    """
+    return help.__doc__
