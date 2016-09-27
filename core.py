@@ -9,8 +9,9 @@ from functions import initializer
 from slackclient import SlackClient
 
 def main():
+    print "Inicializando rembot..."
     client = initializer.initclient()
-    READ_WEBSOCKET_DELAY = 1
+    READ_WEBSOCKET_DELAY = 3
     if client.rtm_connect():
         print "Rembot connected and running!"
         while True:
