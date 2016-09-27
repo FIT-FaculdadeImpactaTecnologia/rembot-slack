@@ -3,7 +3,7 @@
 
 from config import settings
 
-AT_BOT = "<@" + settings.SLACK_BOT_ID + ">:"
+AT_BOT = "<@" + settings.SLACK_BOT_ID + "> /"
 
 def parse_slack_output(rtm_output):
     output_list = rtm_output
