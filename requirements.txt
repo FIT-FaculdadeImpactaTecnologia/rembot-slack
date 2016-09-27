@@ -3,3 +3,4 @@ python-firebase==1.2
 slackclient==1.0.2
 virtualenv==15.0.3
 websocket-client==0.37.0
+BeautifulSoup
