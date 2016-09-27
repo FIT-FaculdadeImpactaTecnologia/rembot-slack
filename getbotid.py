@@ -11,4 +11,7 @@ def getBotId():
         users = api_call.get('members')
         for user in users:
             if user.get('name') == settings.SLACK_BOT_NAME:
-                return user.get('id')
+                print user.get('id')
+
+if __name__ == '__main__':
+    getBotId()
