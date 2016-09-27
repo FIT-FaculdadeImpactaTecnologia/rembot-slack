@@ -1,2 +1,3 @@
 websocket-client
 slack-client
+python-firebase
