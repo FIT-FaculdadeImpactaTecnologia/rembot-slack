@@ -8,7 +8,8 @@ def traduzir():
 
 def sala():
     salas = classes.getclasses()
-    return 'primeiro horário: {}\nsegundo horário: {}'.format(salas['fclass'], salas['sclass'])
+    return ':clock7:  {}\n:clock9:  {}\n'.format(salas['fclass'], salas['sclass'])
+
 
 def help(command = ''):
     if not command == '':
