@@ -1,1 +1,1 @@
-web: python core.py
+web: gunicorn slackrembot.wgi --log-file -
