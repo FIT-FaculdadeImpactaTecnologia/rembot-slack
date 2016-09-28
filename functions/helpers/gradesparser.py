@@ -19,7 +19,7 @@ class GradesParser(object):
         login_data = {'nrra': self.ra,'dessenha': self.password}
         return self.session.post(self.login_url, data=login_data)
 
-    def getgradesurl(self):
+    def get_grades_url(self):
         self.login()
         grades_soup = BeautifulSoup(self.session.get(self.grades_url + 'notas-faltas.php').text, 'html.parser')
         grades_soup = BeautifulSoup(self.session.get(self.grades_url + 'notas-faltas.php').text, 'html.parser')
@@ -35,8 +35,8 @@ class GradesParser(object):
          grades_end_index = s.find('<div class="legends container well pull-left">')
          return s[grandes_start_index:grades_end_index]
 
-    def getgradestable(self):
-        response = self.session.get(self.grades_url + self.getgradesurl())
+    def get_grades_table(self):
+        response = self.session.get(self.grades_url + self.get_grades_url())
         grades_grid = self.find_grade_grid(response.text)
 
         return grades_grid
@@ -47,5 +47,5 @@ if __name__ == '__main__':
     senha = 'XXXXXX'
     semestre = 3
     parser = GradesParser(ra, senha, semestre)
-    print parser.getgradestable()
+    print parser.get_grades_table()
    
