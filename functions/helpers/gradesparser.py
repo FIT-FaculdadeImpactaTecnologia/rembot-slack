@@ -21,7 +21,8 @@ class GradesParser(object):
 
     def getgradesurl(self):
         self.login()
-        grades_soup = BeautifulSoup(self.session.get(self.grades_url + 'notas-faltas.php').text, 'lxml')
+        grades_soup = BeautifulSoup(self.session.get(self.grades_url + 'notas-faltas.php').text, 'html.parser')
+        grades_soup = BeautifulSoup(self.session.get(self.grades_url + 'notas-faltas.php').text, 'html.parser')
         grades_table = grades_soup.find(id = 'grid-cursos-notas-faltas').findAll('tr')
         for section in grades_table:
             section_soup = BeautifulSoup(str(section), 'lxml')
@@ -29,13 +30,22 @@ class GradesParser(object):
             if int(semester) == self.semester:
                 return section_soup.find('a')['href']
 
+    def find_grade_grid(self, s):
+         grandes_start_index = s.find('<th class="table-subtitle">Situa')
+         grades_end_index = s.find('<div class="legends container well pull-left">')
+         return s[grandes_start_index:grades_end_index]
+
     def getgradestable(self):
         response = self.session.get(self.grades_url + self.getgradesurl())
-        return response.text
+        grades_grid = self.find_grade_grid(response.text)
+
+        return grades_grid
+         
 
 if __name__ == '__main__':
-    ra = 'xxxxxx'
-    senha = 'xxxxxx'
+    ra = 'XXXXXX'
+    senha = 'XXXXXX'
     semestre = 3
     parser = GradesParser(ra, senha, semestre)
     print parser.getgradestable()
+   
