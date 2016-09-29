@@ -38,14 +38,21 @@ class GradesParser(object):
     def get_grades_table(self):
         response = self.session.get(self.grades_url + self.get_grades_url())
         grades_grid = self.find_grade_grid(response.text)
-
         return grades_grid
-         
+
+    def parse_grades_table(self):
+        soup = BeautifulSoup(self.get_grades_table(), 'lxml')
+        # print soup.prettify()
+        disciplines = soup.findAll('tr')
+        disciplines = str(disciplines).split('</tr>')
+        print disciplines[-1]
+        # for discipline in disciplines[:-1]:
+            # discipline_soup = BeautifulSoup(discipline, 'lxml')
+            # print discipline_soup.find('td', 'table-left').text
 
 if __name__ == '__main__':
-    ra = 'XXXXXX'
-    senha = 'XXXXXX'
+    ra = '1510512'
+    senha = '147071'
     semestre = 3
     parser = GradesParser(ra, senha, semestre)
-    print parser.get_grades_table()
-   
+    parser.parse_grades_table()   
