@@ -13,7 +13,7 @@ def sala():
 
 def notas(params = []):
     grades = GradesParser(params[0], params[1], params[2])
-    return grades.bot_response()
+    return grades.bot_exec()
 
 def help(command = ''):
     """
