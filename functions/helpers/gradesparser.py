@@ -57,23 +57,18 @@ class GradesParser(object):
         grade_and_dict = self.disciplines_grade_and_dict()
         grades, disciplines_dict = grade_and_dict[0], grade_and_dict[1]   
         grades_matches = re.findall('\d{1,2},\d{2}', str(grades))
-        print grades_matches
-        # for x in range(len(grades_matches)):
-            # print grades_matches[x]
-            # print grades_matches[x+1]
-            # print grades_matches[x+1]
+        chunked_list = [grades_matches[x:x+5] for x in xrange(0, len(grades_matches), 5)]
+        
+        for discipline_grade in chunked_list:
+            for discipline in disciplines_dict:
+                disciplines_dict[discipline] = chunked_list.pop()
 
-        # print 'primeiro bimestre: {}\nsegundo bimestre: {}\nmedia final: {}'.format(
-                # grades_matches[0],
-                # grades_matches[1],
-                # grades_matches[4]
-            # )
-        # print disciplines_dict
+        return disciplines_dict
 
-if __name__ == '__main__':
-    ra = '1510512'
-    senha = '147071'
-    semestre = 3
-    parser = GradesParser(ra, senha, semestre)
-    parser.parse_grades()
-    # print parser.disciplines_grade_and_dict()[1]   
+    def bot_response(self):
+        response_string = "Aqui estão suas notas\n"
+        disciplines_grades = self.parse_grades()
+        for discipline in disciplines_grades:
+            response_string += ":books:{}:\n:one: : {}\n:two: : {}\nFINAL: {}\n".format(discipline, disciplines_grades[discipline][0], disciplines_grades[discipline][1], disciplines_grades[discipline][-1])
+
+        return response_string

@@ -1,6 +1,7 @@
 #!usr/bin/env python
 #-*- coding: utf-8 -*-
 
+from helpers.gradesparser import GradesParser
 from remfirebase import classes 
 
 def traduzir():
@@ -11,7 +12,8 @@ def sala():
     return ':clock7:  {}\n:clock9:  {}\n'.format(salas['fclass'], salas['sclass'])
 
 def notas(params = []):
-    return 'ra: {} - senha:{} - semestre:{}'.format(params[0], params[1], params[2])
+    grades = GradesParser(params[0], params[1], params[2])
+    return grades.bot_response()
 
 def help(command = ''):
     """
