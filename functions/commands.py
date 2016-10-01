@@ -17,7 +17,8 @@ def notas(params = []):
 
 def help(command = ''):
     """
-    /sala
-    /traduzir
+/sala
+/notas @ ra senha semestre
+/traduzir
     """
     return help.__doc__
