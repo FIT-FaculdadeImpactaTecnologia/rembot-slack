@@ -18,17 +18,24 @@ class GradesParser(object):
         self.grades_url = 'http://www.impacta.edu.br/aluno/'
 
     def bot_exec(self):
-        self.login()
-        grades_url = self.get_grades_url()
-        grades_table = self.get_grades_table(grades_url)
-        grades_grid = self.find_grade_grid(grades_table)
-        disciplines, disciplines_dict = self.disciplines_grade_and_dict(grades_grid)
-        disciplines_grades_dict = self.parse_grades((disciplines, disciplines_dict))
-        return self.bot_response(disciplines_grades_dict)
+        if self.login():
+            grades_url = self.get_grades_url()
+            grades_table = self.get_grades_table(grades_url)
+            grades_grid = self.find_grade_grid(grades_table)
+            disciplines, disciplines_dict = self.disciplines_grade_and_dict(grades_grid)
+            disciplines_grades_dict = self.parse_grades((disciplines, disciplines_dict))
+            return self.bot_response(disciplines_grades_dict)
+        else:
+            return "Credenciais ou semestre inválidos:exclamation:"
 
     def login(self):
         login_data = {'nrra': self.ra,'dessenha': self.password}
-        self.session.post(self.login_url, data=login_data)
+        login_tentative = self.session.post(self.login_url, data=login_data)
+        login_tentative = str(login_tentative.url)
+        if str(login_tentative) == self.grades_url:
+            return True
+        else:
+            return False
 
     def get_grades_url(self):
         grades_soup = BeautifulSoup(self.session.get(self.grades_url + 'notas-faltas.php').text, 'html.parser')
