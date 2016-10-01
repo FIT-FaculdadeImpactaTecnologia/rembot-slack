@@ -24,11 +24,11 @@ class GradesParser(object):
         grades_grid = self.find_grade_grid(grades_table)
         disciplines, disciplines_dict = self.disciplines_grade_and_dict(grades_grid)
         disciplines_grades_dict = self.parse_grades((disciplines, disciplines_dict))
-        return bot_response(disciplines_grades)
+        return self.bot_response(disciplines_grades_dict)
 
     def login(self):
         login_data = {'nrra': self.ra,'dessenha': self.password}
-        self.session = self.session.post(self.login_url, data=login_data)
+        self.session.post(self.login_url, data=login_data)
 
     def get_grades_url(self):
         grades_soup = BeautifulSoup(self.session.get(self.grades_url + 'notas-faltas.php').text, 'html.parser')
@@ -76,6 +76,6 @@ class GradesParser(object):
     def bot_response(self, disciplines_grades):
         response_string = "Aqui estão suas notas\n"
         for discipline in disciplines_grades:
-            response_string += ":books:{}:\n:one: : {}\n:two: : {}\nFINAL: {}\n".format(discipline, disciplines_grades[discipline][0], disciplines_grades[discipline][1], disciplines_grades[discipline][-1])
+            response_string += ":books: {}:\n:one: : {}\n:two: : {}\n:exclamation: : {}\n\n".format(discipline, disciplines_grades[discipline][0], disciplines_grades[discipline][1], disciplines_grades[discipline][-1])
 
         return response_string
