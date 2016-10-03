@@ -10,10 +10,7 @@ def handle_command(command, channel):
     invalid_command = "Comando inválido, tente novamente!"
     if len(command.split()) > 1:
         values = command.split('@')
-        command = values[0].strip()
-        params = values[1].split()
-        print params
-        client.api_call('chat.postMessage', channel=channel, text=getattr(commands, command)(params), as_user=True)
+        client.api_call('chat.postMessage', channel=channel, text=getattr(commands, values[0].strip())(values[1].split()), as_user=True)
     else:
         if hasattr(commands, command):
             print "Executando comando..."
