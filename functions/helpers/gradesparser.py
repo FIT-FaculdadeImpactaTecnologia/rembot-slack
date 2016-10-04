@@ -74,9 +74,9 @@ class GradesParser(object):
         grades_matches = re.findall('\d{1,2},\d{2}', str(grades))
         chunked_list = [grades_matches[x:x+5] for x in xrange(0, len(grades_matches), 5)]
         
-        for discipline_grade in chunked_list:
+        for x, discipline_grade in enumerate(chunked_list):
             for discipline in disciplines_dict:
-                disciplines_dict[discipline] = chunked_list.pop()
+                disciplines_dict[discipline] = chunked_list.pop(x)
 
         return disciplines_dict
 
