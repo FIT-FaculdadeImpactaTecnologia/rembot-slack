@@ -5,6 +5,7 @@ import firebaseclient
 
 day = time.strftime("%A").lower()
 
-def getclasses():
+def getclasses(params):
+    path = '/{}/{}/{}'.format(params[0].lower(), params[1], day)
     client = firebaseclient.init()
-    return client.get('/' + str(day), None)
+    return client.get(path, None)

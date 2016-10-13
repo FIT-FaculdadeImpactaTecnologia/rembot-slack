@@ -7,9 +7,12 @@ from remfirebase import classes
 def traduzir():
     return 'função em desenvolvimento!'
 
-def sala():
-    salas = classes.getclasses()
-    return ':clock7:  {}\n:clock9:  {}\n'.format(salas['fclass'], salas['sclass'])
+def sala(params = []):
+    if(len(params) == 2):
+        salas = classes.getclasses(params)
+        return ':clock7:  {}\n:clock9:  {}\n'.format(salas['fclass'], salas['sclass'])
+    else:
+        return 'Parâmetros inválidos :exclamation:'
 
 def notas(params = []):
     if(len(params) == 3):
