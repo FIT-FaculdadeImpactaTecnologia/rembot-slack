@@ -25,6 +25,5 @@ def help(command = ''):
     """
 /sala
 /notas @ ra senha semestre
-/traduzir
     """
     return help.__doc__
