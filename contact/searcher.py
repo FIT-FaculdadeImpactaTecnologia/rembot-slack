@@ -1,12 +1,12 @@
-import firebase
 import os
+import firebase
 
 class Searcher(object):
 
     def __init__(self, pattern):
-        os.chdir('/home/vinicius/rembot')
+        path = '{}/teachers_cache.txt'.format(os.getcwd())
         self.pattern = pattern
-        self.teachers_file = open('contact/teachers_cache.txt', 'r')
+        self.teachers_file = open(path, 'r')
         self.firebase_client = firebase.FirebaseApplication("https://rembot-68f41.firebaseio.com/", None)
         self.teacher_info = dict()
 
