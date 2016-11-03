@@ -17,7 +17,7 @@ class Searcher(object):
             string = ""
             for teacher in teachers_list:
                 email = self.parse_info(teacher)
-                string += "professor: {}\nemail: {}".format(teacher, email)
+                string += "professor: {}\nemail: {}\n".format(teacher, email)
             return string
         else:
             return 'Nenhum professor encontrado :exclamation:'
