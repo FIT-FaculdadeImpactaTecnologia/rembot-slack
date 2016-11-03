@@ -1,12 +1,16 @@
 #!usr/bin/env python
 #-*- coding: utf-8 -*-
 
+import sys
 import time
 from config import settings
 from functions import parser
 from functions import handler 
 from functions import initializer 
 from slackclient import SlackClient
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 def main():
     print "Inicializando rembot..."

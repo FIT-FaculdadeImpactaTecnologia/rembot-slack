@@ -4,12 +4,9 @@
 import sys
 import requests
 from bs4 import BeautifulSoup
-from firebase import firebase
+import firebase
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
-
-class ImpactaUtils(object):
+class ContactSearcher(object):
 
     def __init__(self):
         self.session = requests.session()
@@ -23,7 +20,7 @@ class ImpactaUtils(object):
 
     def login(self):
         # Nrra: RA  -  Dessenha : SENHA 
-        post_dict = { 'nrra': '', 'dessenha': '' }
+        post_dict = { 'nrra': '1510512', 'dessenha': '147071' }
         self.session.post("http://www.impacta.edu.br/account/enter.php", data=post_dict)
 
     def get_contact_page(self):
@@ -40,7 +37,7 @@ class ImpactaUtils(object):
             self.contact_dict[name] = email.lower()
 
     def post_email_in_database(self, name, email):
-        self.firebase_client.put("teachers_email", name, email)
+        self.firebase_client.put("teachers_email", name.lower(), email)
 
     def save_emails(self):
         for teacher in self.contact_dict:
