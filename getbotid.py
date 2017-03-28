@@ -12,6 +12,8 @@ def getBotId():
         for user in users:
             if user.get('name') == settings.SLACK_BOT_NAME:
                 print user.get('id')
+            else:
+                print "não foi possível recuperar o id do bot"
 
 if __name__ == '__main__':
     getBotId()
